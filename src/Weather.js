@@ -1,11 +1,12 @@
 import React from 'react'
-import {useEffect,} from 'react'
+import {useEffect,useState} from 'react'
 
 
 
 
 
 const Weather = () => {
+    const [weather,setWeather]=useState('')
     useEffect(() => {
         fetch('http://api.openweathermap.org/data/2.5/weather?q=London&appid=f062124b807daaa28c43206c00f668b1')
         .then((res)=>{
@@ -13,6 +14,7 @@ const Weather = () => {
         })
         .then((data)=>{
             console.log(data)
+            setWeather(data)
         })
            
         
@@ -20,6 +22,8 @@ const Weather = () => {
     return (
         <div>
             <h1>Weather app</h1>
+            <h3>{weather.main.temp}</h3>
+            
         </div>
     )
 }
